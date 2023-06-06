@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/style.css" />
+  <title>Daftar Catatan</title>
+</head>
+<body>
+  <h1>Daftar Catatan</h1>
+  <form action="/catatan" method="POST">
+    <label for="title">Judul:</label><br>
+    <input type="text" id="title" name="title"><br><br>
+    <label for="content">Isi:</label><br>
+    <textarea id="content" name="content"></textarea><br><br>
+    <button type="submit">Simpan</button>
+  </form>
+  <br>
+  <% if (catatan.length > 0) { %>
+    <ul>
+      <% catatan.forEach(function(catatan) { %>
+        <li>
+          <h3><%= catatan.title %></h3>
+          <p><%= catatan.content %></p>
+          <form action="/catatan/hapus/<%= catatan.id %>" method="POST">
+            <button type="submit" class="btn-hapus">Hapus</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>Tidak ada catatan.</p>
+  <% } %>
+</body>
+</html>
